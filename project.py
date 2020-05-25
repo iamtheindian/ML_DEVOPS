@@ -78,8 +78,8 @@ train_datagen=ImageDataGenerator(
       fill_mode='nearest')
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
-train_data_dir = './cell_images/'
-validation_data_dir = './valid/'
+train_data_dir = '/workstation/cell_images/'
+validation_data_dir = '/workstation/valid/'
 train_batchsize = 10
 val_batchsize = 8
 train_generator=train_datagen.flow_from_directory(train_data_dir,
