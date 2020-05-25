@@ -100,7 +100,7 @@ validation_generator = validation_datagen.flow_from_directory(
 
 
 #checkpoints and data training
-checkpoint = ModelCheckpoint("maleria_detection.h5",
+checkpoint = ModelCheckpoint("/workstation/maleria_detection.h5",
                              monitor="val_loss",
                              mode="min",
                              save_best_only = True,
@@ -118,7 +118,7 @@ history=model.fit_generator(train_generator,
                     validation_data=validation_generator,
                     callbacks=callbacks
 )
-model.save('maleria_detection.h5')
+model.save('/workstation/maleria_detection.h5')
 
 
 # In[20]:
@@ -136,7 +136,7 @@ acc=int(history.history['val_accuracy'][-1]*100)
 # In[24]:
 
 
-with open('des_acc.txt','w+') as f:
+with open('/workstation/des_acc.txt','w+') as f:
     f.write(str(acc)+'\n')
 
 
