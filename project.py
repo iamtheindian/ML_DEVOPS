@@ -48,9 +48,9 @@ print(model.summary())
 # In[5]:
 
 
-model.add(Dense(48,activation='relu',name='First MOdel Dense'))
+model.add(Dense(48,activation='relu',name='FirstDense'))
 #now output layer 
-model.add(Dense(1,activation='sigmoid',name='Output Dense'))
+model.add(Dense(1,activation='sigmoid',name='OutputDense'))
 
 
 # In[6]:
