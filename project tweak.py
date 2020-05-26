@@ -20,7 +20,7 @@ from random import randint
 # In[2]:
 
 
-model=load_model('maleria_detection.h5')
+model=load_model('/workstation/maleria_detection.h5')
 
 
 # In[3]:
@@ -42,13 +42,13 @@ def cnn_filter(model,unt):
 # In[5]:
 
 
-model.summary()
+print(model.summary())
 
 
 # In[6]:
 
 
-with open('des_acc.txt','r+') as f:
+with open('/workstation/des_acc.txt','r+') as f:
     data=f.read()
     acc=int(data)
     print(acc)
@@ -85,7 +85,7 @@ validation_generator = validation_datagen.flow_from_directory(
         shuffle=False)
 
 #checkpoints and data training
-checkpoint = ModelCheckpoint("maleria_detection_tweak.h5 ",
+checkpoint = ModelCheckpoint("/workstation/maleria_detection_tweak.h5 ",
                              monitor="val_loss",
                              mode="min",
                              save_best_only = True,
@@ -100,11 +100,12 @@ callbacks = [earlystop, checkpoint]
 
 
 # In[9]:
-
+cl_cat=(train_generator.class_indices)
+print(cl_cat)
 
 
 count=1
-while acc<93 and count<5:
+while acc<90 and count<5:
     no_dense=randint(30 ,100)
     new_model=cnn_filter(model, no_dense)
     print(new_model.summary())
@@ -117,9 +118,9 @@ while acc<93 and count<5:
     acc=int(history.history['val_accuracy'][-1]*100)
     count+=1
     model=new_model
-model.save('maleria_detection_tweak.h5')
+model.save('/workstation/maleria_detection_tweak.h5')
 print(acc,new_model.summary())   
 
-with open('final_acc.txt','w+') as f:
+with open('/workstation/final_acc.txt','w+') as f:
     f.write(str(acc)+'\n')
 print("all task executed")
