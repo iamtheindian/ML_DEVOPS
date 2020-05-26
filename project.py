@@ -48,7 +48,7 @@ print(model.summary())
 # In[5]:
 
 
-model.add(Dense(48,activation='relu',name='FirstDense'))
+model.add(Dense(100,activation='relu',name='FirstDense'))
 #now output layer 
 model.add(Dense(1,activation='sigmoid',name='OutputDense'))
 
@@ -125,7 +125,7 @@ model.save('/workstation/maleria_detection.h5')
 
 # In[20]:
 
-
+print("accuracy")
 print(history.history['val_accuracy'][-1])
 
 
@@ -133,7 +133,7 @@ print(history.history['val_accuracy'][-1])
 
 
 acc=int(history.history['val_accuracy'][-1]*100)
-
+print(acc)
 
 # In[24]:
 

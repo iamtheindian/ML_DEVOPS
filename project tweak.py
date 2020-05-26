@@ -105,22 +105,23 @@ print(cl_cat)
 
 
 count=1
-while acc<90 and count<5:
-    no_dense=randint(30 ,100)
+while acc<85 and count<4:
+    no_dense=randint(40 ,120)
     new_model=cnn_filter(model, no_dense)
     print(new_model.summary())
     new_model.compile(optimizer='Adam',loss='binary_crossentropy',metrics=['accuracy'])
     history=new_model.fit_generator(train_generator,
                     epochs=1,
                     validation_data=validation_generator,
-                    callbacks=callbacks
-)
+                    callbacks=callbacks )
     acc=int(history.history['val_accuracy'][-1]*100)
+    print("- "*10,"new model accuracy= ",acc)
     count+=1
     model=new_model
-model.save('/workstation/maleria_detection_tweak.h5')
+new_model.save('/workstation/maleria_detection_tweak.h5')
 print(acc,new_model.summary())   
 
 with open('/workstation/final_acc.txt','w+') as f:
     f.write(str(acc)+'\n')
+    
 print("all task executed")
