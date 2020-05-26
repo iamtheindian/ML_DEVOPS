@@ -67,8 +67,8 @@ train_datagen=ImageDataGenerator(
       fill_mode='nearest')
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
-train_data_dir = './cell_images/'
-validation_data_dir = './valid/'
+train_data_dir = '/workstation/cell_images/'
+validation_data_dir = '/workstation/valid/'
 train_batchsize = 10
 val_batchsize = 8
 train_generator=train_datagen.flow_from_directory(train_data_dir,
@@ -120,9 +120,6 @@ while acc<93 and count<5:
 model.save('maleria_detection_tweak.h5')
 print(acc,new_model.summary())   
 
-
-# In[ ]:
-
-
-
-
+with open('final_acc.txt','w+') as f:
+    f.write(str(acc)+'\n')
+print("all task executed")
