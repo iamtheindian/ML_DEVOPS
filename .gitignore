@@ -1,6 +1,7 @@
-cell_images
-valid
-temp.py
-des_acc.txt
-maleria_detection.h5
+*
+!.gitignore
+!project.py
+!project\ tweak.py
 
+!maleria_detection_tweak.h5
+!maleria_detection.h5
