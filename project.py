@@ -48,9 +48,9 @@ print(model.summary())
 # In[5]:
 
 
-model.add(Dense(48,activation='relu'))
+model.add(Dense(48,activation='relu',name='First MOdel Dense'))
 #now output layer 
-model.add(Dense(1,activation='sigmoid'))
+model.add(Dense(1,activation='sigmoid',name='Output Dense'))
 
 
 # In[6]:
@@ -98,7 +98,6 @@ validation_generator = validation_datagen.flow_from_directory(
 
 # In[9]:
 
-
 #checkpoints and data training
 checkpoint = ModelCheckpoint("/workstation/maleria_detection.h5",
                              monitor="val_loss",
@@ -112,7 +111,10 @@ earlystop = EarlyStopping(monitor = 'val_loss',
                           verbose = 1,
                           restore_best_weights = True)
 callbacks = [earlystop, checkpoint]
-
+print("MODEL CREATION STARTED")
+cl_cat=train_generator.class_indices
+print(cl_cat)
+print(validation_generator.class_indices)
 history=model.fit_generator(train_generator,
                     epochs=2,
                     validation_data=validation_generator,
